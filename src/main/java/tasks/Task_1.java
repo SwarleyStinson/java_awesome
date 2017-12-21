@@ -36,7 +36,7 @@ public class Task_1 {
         }
     }
 
-    class Song {
-        String str;
+    static class Song {
+        static String str = "";
     }
 }
