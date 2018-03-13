@@ -1,7 +1,5 @@
 package excercises;
 
-import java.util.Scanner;
-
 public class Excercise_4 {
 
     /**
