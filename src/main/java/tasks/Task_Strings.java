@@ -1,7 +1,5 @@
 package tasks;
 
-import java.util.ArrayList;
-
 public class Task_Strings {
     static String string = "The new String";
 
@@ -10,7 +8,11 @@ public class Task_Strings {
      */
 
     public static void main(String[] args) {
-        ArrayList<String> array = new ArrayList<>();
+        // ArrayList<String> array = new ArrayList<>();
+        String str = " test space ";
+        System.out.println(str.trim());
+        System.out.println(str.endsWith(" "));
+        System.out.println(str.trim().endsWith(" "));
 
     }
 
