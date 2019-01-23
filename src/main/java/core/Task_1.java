@@ -1,4 +1,4 @@
-package tasks;
+package core;
 
 public class Task_1 {
     public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class Task_1 {
             this.phrase = phrase;
         }
 
-        public Phrase phrase;
+        Phrase phrase;
 
         Phrase getPhrase() {
             return phrase;

@@ -11,7 +11,7 @@ public class Excercise_1 {
         System.out.print("enter ->");
         String s = "";
         StringBuilder result = new StringBuilder();
-        while (!s.equals(".")) {
+        while (!s.equals(".") || !s.equals(",")) {
             s = keyboard.nextLine();
 
             if (s.contains(".")) {

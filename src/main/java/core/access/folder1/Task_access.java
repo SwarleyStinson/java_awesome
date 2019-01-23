@@ -1,6 +1,6 @@
-package tasks.access.folder1;
+package core.access.folder1;
 
-import tasks.Task_1;
+import core.Task_1;
 
 public class Task_access {
     public Task_access() {

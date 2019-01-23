@@ -1,4 +1,4 @@
-package tasks;
+package core;
 
 public class Task_Garbage_collector {
     public static void main(String[] args) {

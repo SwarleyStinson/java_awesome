@@ -1,4 +1,4 @@
-package tasks;
+package core;
 
 public class Task_Exception {
     public static void main(String[] args) throws Exception {

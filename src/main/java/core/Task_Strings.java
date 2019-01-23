@@ -1,4 +1,4 @@
-package tasks;
+package core;
 
 public class Task_Strings {
     static String string = "The new String";

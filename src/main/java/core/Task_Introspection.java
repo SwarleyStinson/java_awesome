@@ -1,4 +1,4 @@
-package tasks;
+package core;
 
 public class Task_Introspection {
     public static class Color {

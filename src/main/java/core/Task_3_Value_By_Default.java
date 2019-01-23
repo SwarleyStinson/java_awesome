@@ -1,4 +1,4 @@
-package tasks;
+package core;
 
 public class Task_3_Value_By_Default {
     public static void main(String[] args) {
@@ -12,6 +12,7 @@ public class Task_3_Value_By_Default {
         boolean flag;
         String s;
 
-        /* System.out.println(b);  Error:(16, 39) java: variable b might not have been initialized */
+//        System.out.println(sh);
+// Error:(16, 39) java: variable b might not have been initialized
     }
 }

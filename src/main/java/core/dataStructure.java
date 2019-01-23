@@ -1,15 +1,15 @@
-package tasks;
+package core;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
 
-public class Task_2_Data_Structure {
+public class dataStructure {
     static int[] array = {1, 2, 3, 4, 5};
     String str = "6, 7, 8, 9";
 
-    static Map<Integer, Integer> map = new HashMap<>();
+    static Map<Integer, Integer> map = new HashMap<Integer, Integer>();
     static Random random = new Random();
     static int min = 0;
     static int max = 0;
@@ -23,7 +23,7 @@ public class Task_2_Data_Structure {
 
         // find MIN and MAX
         // sort
-        Map<Integer, Integer> sortedMap = new TreeMap<>();
+        Map<Integer, Integer> sortedMap = new TreeMap<Integer, Integer>();
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             System.out.print(entry + " ");
             max = max < entry.getValue() ? entry.getValue() : max;

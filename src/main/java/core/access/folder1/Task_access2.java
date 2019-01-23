@@ -1,4 +1,4 @@
-package tasks.access.folder1;
+package core.access.folder1;
 
 public class Task_access2 {
 
