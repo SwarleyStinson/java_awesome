@@ -60,7 +60,7 @@ public class Task_Sorting {
     private static class SortArrayList {
 
         private static Random rnd = new Random();
-        ArrayList<Integer> list = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
 
         long Counter = 0;
 
