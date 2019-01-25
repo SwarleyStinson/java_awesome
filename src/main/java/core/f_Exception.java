@@ -1,6 +1,6 @@
 package core;
 
-public class Task_Exception {
+public class f_Exception {
     public static void main(String[] args) throws Exception {
         HandledException exc = new HandledException();
 

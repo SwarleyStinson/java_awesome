@@ -4,7 +4,7 @@ package core;
 import java.util.Arrays;
 import java.util.List;
 
-public class Array {
+public class f3_Array {
     /** DECLARATION */
     int[] array;  // предпочтительный способ
     int array2[]; // тоже правильный, но не предпочтительный.

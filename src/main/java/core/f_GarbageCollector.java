@@ -1,6 +1,6 @@
 package core;
 
-public class Task_Garbage_collector {
+public class f_GarbageCollector {
     public static void main(String[] args) {
         System.out.println("Call Garbage collector");
 

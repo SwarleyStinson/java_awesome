@@ -1,6 +1,6 @@
 package core;
 
-public class Task_Strings {
+public class f_Strings {
     static String string = "The new String";
 
     /**

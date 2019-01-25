@@ -1,6 +1,6 @@
 package core;
 
-public class Task_Introspection {
+public class f_Introspection {
     public static class Color {
         String intencity = "max";
     }

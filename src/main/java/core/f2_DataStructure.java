@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
 
-public class dataStructure {
+public class f2_DataStructure {
     static int[] array = {1, 2, 3, 4, 5};
     String str = "6, 7, 8, 9";
 

@@ -3,9 +3,9 @@ package core;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Task_StackTrace {
+public class f_StackTrace {
 
-    final Logger LOGGER = LoggerFactory.getLogger("Task_StackTrace");
+    final Logger LOGGER = LoggerFactory.getLogger("f_StackTrace");
 
     public static void main(String[] args) throws Exception {
 
