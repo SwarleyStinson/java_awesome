@@ -19,10 +19,10 @@ public class f3_Array {
 
         System.out.println(Arrays.equals(array3, new int[10])); // сравнение двух массивов
         System.out.println(Arrays.binarySearch(array3, 3));
-        System.out.println(array3);
+        System.out.println(array3.toString());
         Arrays.sort(array3);  //  сортирует массив
         
-        System.out.println(array3);
+        System.out.println(array3.toString());
         System.out.println(array1.length);
     }
 }

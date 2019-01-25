@@ -1,6 +1,6 @@
 package core;
 
-public abstract class f1_1_methods {
+public abstract class f1_methods {
     void method() {
 
     }
