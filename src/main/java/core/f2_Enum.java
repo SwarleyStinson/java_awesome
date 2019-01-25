@@ -3,7 +3,7 @@ package core;
 enum f2_Enum {
     ONE, SECOND, THIRD;
 
-    enum CoffeSize {
+    enum CoffeeSize {
         SMALL(100), MEDIUM(200), BIG(300) {
             @Override
             public String getCoffeeClass() {
@@ -14,7 +14,7 @@ enum f2_Enum {
         String coffeeClass = "A";
         int millilitres;
 
-        CoffeSize(int millilitres) {
+        CoffeeSize(int millilitres) {
             this.millilitres = millilitres;
         }
 
@@ -28,9 +28,9 @@ enum f2_Enum {
     }
 
     public static void main(String[] args) {
-        CoffeSize coffeSize = CoffeSize.MEDIUM;
-        System.out.println(coffeSize);
-        System.out.println(coffeSize.getMillilitres());
-        System.out.println(coffeSize.getCoffeeClass());
+        CoffeeSize coffeeSize = CoffeeSize.MEDIUM;
+        System.out.println(coffeeSize);
+        System.out.println(coffeeSize.getMillilitres());
+        System.out.println(coffeeSize.getCoffeeClass());
     }
 }
