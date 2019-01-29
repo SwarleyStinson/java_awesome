@@ -11,4 +11,6 @@ public class f_GarbageCollector {
         System.out.println("nano=" + (System.nanoTime() - nano) +
                 "\nmillis=" + (System.currentTimeMillis() - millis));
     }
+
+    // TODO: урок 34 garbage collector. Наверно, там будет что-то интересное
 }
