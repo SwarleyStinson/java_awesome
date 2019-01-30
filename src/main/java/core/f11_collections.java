@@ -23,7 +23,8 @@ public class f11_collections {
         }
 
         /** интерфейс List
-         * *              и его реализации ArrayList  и  LinkedList
+         * *              и его реализации ArrayList
+         * *                               LinkedList
          * .set()
          * .get()
          * .indexOf()
@@ -43,6 +44,8 @@ public class f11_collections {
          * *               и его реализации ArrayDeque
          * *                                PriorityQueue
          * */
+        Queue queue = new ArrayDeque();
+        PriorityQueue priQueue = new PriorityQueue();
 
         Collections collections;
         Arrays arrays;
