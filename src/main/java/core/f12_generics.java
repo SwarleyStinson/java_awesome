@@ -16,9 +16,9 @@ import java.util.List;
  * *
  * 3) Нельзя создать static generic-переменную
  */
-public class f11_generics {
+public class f12_generics {
     public static void main(String[] args) {
-        f11_generics main = new f11_generics();
+        f12_generics main = new f12_generics();
         main.method(123, new ArrayList<>());
 
         /** Можно параметризовывать коллекции. */
