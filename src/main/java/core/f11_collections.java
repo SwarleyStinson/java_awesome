@@ -4,6 +4,7 @@ import java.util.*;
 
 public class f11_collections {
     public static void main(String[] args) {
+        // TODO: прочитать
         /** интерфейс Collection
          * .add()
          * .iterator()
@@ -29,7 +30,8 @@ public class f11_collections {
          * .get()
          * .indexOf()
          * */
-        ArrayList list = new ArrayList();
+        List list1 = new Vector();
+        ArrayList list2 = new ArrayList();
         LinkedList linkedList = new LinkedList();
 
         /** интерфейс Set
