@@ -3,7 +3,36 @@ package core;
 import java.util.Random;
 
 public class f5_Strings {
+    /**
+     * String pool -
+     * *            JVM can optimize the amount of memory allocated for String
+     * *            by storing only one copy of each literal String in the pool.
+     * *
+     * When we create a String variable and assign a value to it, the JVM searches the pool for a String of equal value.
+     * *
+     * If found, the Java compiler will simply return a reference to its memory address,
+     * without allocating additional memory.
+     * *
+     * If not found, it’ll be added to the pool (interned) and its reference will be returned.
+     */
     static String string = "The new String";
+    String s1;
+    String s2;
+    String s3;
+    String s4;
+
+    {
+        s1 = "literal"; // will create new value in String pool
+        s2 = new String("new object in heap");
+        /*
+           will NOT create new value, because String pool conclude this literal   ->  more fast, cheap for memory
+         */
+        s3 = "literal";
+        /*
+            NO creating new value, using existing literal.
+        */
+        s4 = s2.intern();
+    }
 
     /**
      * Error:(7, 28) java: non-static variable string cannot be referenced from a static context
