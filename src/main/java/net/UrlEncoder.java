@@ -12,6 +12,7 @@ public class UrlEncoder {
 
 
     private static String method(String s) throws UnsupportedEncodingException {
+        System.out.println(2);
         return URLEncoder.encode(s, "UTF-8");
     }
 }
