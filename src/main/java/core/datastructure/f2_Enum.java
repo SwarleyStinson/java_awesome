@@ -1,4 +1,4 @@
-package core;
+package core.datastructure;
 
 enum f2_Enum {
     ONE, SECOND, THIRD;
