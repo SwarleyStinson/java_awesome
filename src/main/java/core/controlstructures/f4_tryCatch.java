@@ -4,7 +4,6 @@ public class f4_tryCatch {
 
     public static void main(String[] args) {
         System.out.println(method());
-
     }
 
     private static String method() {
