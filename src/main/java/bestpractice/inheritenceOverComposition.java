@@ -7,5 +7,5 @@ package bestpractice;
 // WE CANN'T CONTROL OUR PARENT !!!
 // inheretance violetes encapsulation
 // subclass depends on on the implementation details
-public class CompositionOverInheritence {
+public class inheritenceOverComposition {
 }
