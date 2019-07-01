@@ -45,6 +45,9 @@ public class f5_Strings {
         System.out.println(str.endsWith(" "));
         System.out.println(str.trim().endsWith(" "));
 
+        str = "deudirectbanking";
+        System.out.println(str.substring(0, str.indexOf("direct")));
+
         /** изменение String = создание новой строки
          * StringBuilder   или   StringBuffer
          * */

@@ -9,4 +9,8 @@ public class f6_fileSystem {
 
     BufferedReader bufReader;
     BufferedWriter buffWriter;
+
+    public static void main(String[] args) {
+        File file = new File("./keys");
+    }
 }

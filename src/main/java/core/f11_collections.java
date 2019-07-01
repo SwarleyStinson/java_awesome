@@ -32,6 +32,9 @@ public class f11_collections {
          * */
         List list1 = new Vector();
         ArrayList list2 = new ArrayList();
+        list2.add("param1");
+        list2.add("param2");
+        System.out.println("ArrayList contains param1: " + list2.contains("param3"));
         LinkedList linkedList = new LinkedList();
 
         /** интерфейс Set
@@ -51,5 +54,10 @@ public class f11_collections {
 
         Collections collections;
         Arrays arrays;
+
+        Map<String, String> map = new HashMap<>();
+        map.put("param1","value1");
+        map.put("param2","value2");
+        System.out.println(map.toString());
     }
 }

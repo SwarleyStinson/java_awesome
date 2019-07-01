@@ -1,7 +1,9 @@
 package core;
 
 public class f1_dataType {
-    /** 8 типов */
+    /**
+     * 8 типов
+     */
     static byte b; // 1 байт    от -128 до 127
     static short s; // 2 байта  от -32_768 до 32_767
     static int i; // 4 байта    от -2_147_483_648 до 2_147_483_647
@@ -13,17 +15,19 @@ public class f1_dataType {
     static char c; // 2 байта, символ Unicode   от ‘\ u0000’ (или 0), до ‘\ uffff’ (или 65535)
     static boolean bool;
 
-    /** Переменные */
+    /**
+     * Переменные
+     */
     final static transient int maxSpeed = 0;
 
     /* transient  - Эта переменная не будет участвовать в сериализации
-    *  volatile - операция чтения/запись является атомарной. Эта переменная видна другим потокам.
-    *  final - помечает поле, как константу, которой нужно сразу задать значение.
-    *  static - это переменная класса.
-    *          Её можно использовать без создания объекта класса.
-    *          Она одна на весь класс, и не зависит от количества объектов данного класса.
-    *
-    * */
+     *  volatile - операция чтения/запись является атомарной. Эта переменная видна другим потокам.
+     *  final - помечает поле, как константу, которой нужно сразу задать значение.
+     *  static - это переменная класса.
+     *          Её можно использовать без создания объекта класса.
+     *          Она одна на весь класс, и не зависит от количества объектов данного класса.
+     *
+     * */
 
     public static void main(String[] args) {
 
@@ -37,5 +41,14 @@ public class f1_dataType {
         System.out.println(d);
         System.out.println("'" + c + "'");
         System.out.println(bool);
+
+        System.out.println(Boolean.getBoolean("true"));
+        System.out.println(Boolean.getBoolean("TRue"));
+        System.out.println(Boolean.getBoolean("1"));
+        System.out.println(Boolean.valueOf("true"));
+        System.out.println(Boolean.valueOf("trUE"));
+        System.out.println(Boolean.valueOf("1"));
+        System.out.println(Boolean.valueOf(null));
+        System.out.println(Boolean.getBoolean(null));
     }
 }
