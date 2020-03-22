@@ -1,4 +1,4 @@
-package core.java8core;
+package java8core;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
