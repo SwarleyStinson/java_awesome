@@ -14,6 +14,7 @@ public class GameLauncher {
         String application = "D:/app/Icecream Ebook Reader/ebookreader.exe";
         File file = new File(application);
         //commit 1
+        //commit 2
         try {
             Desktop.getDesktop().open(file);
         } catch (IOException e1) {
