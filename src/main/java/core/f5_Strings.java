@@ -45,6 +45,10 @@ public class f5_Strings {
         System.out.println(str.endsWith(" "));
         System.out.println(str.trim().endsWith(" "));
 
+        f5_Strings thisClass = new f5_Strings();
+        System.out.println("s1 == s2: " + String.valueOf(thisClass.s1 == thisClass.s3));
+
+
         str = "deudirectbanking";
         System.out.println(str.substring(0, str.indexOf("direct")));
 
