@@ -15,6 +15,7 @@ public class GameLauncher {
         File file = new File(application);
         //commit 1
         //commit 2
+        //commit 3
         try {
             Desktop.getDesktop().open(file);
         } catch (IOException e1) {
