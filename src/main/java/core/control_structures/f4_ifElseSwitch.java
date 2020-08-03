@@ -1,6 +1,4 @@
-package core.controlstructures;
-
-import java.util.HashMap;
+package core.control_structures;
 
 public class f4_ifElseSwitch {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package core.controlstructures;
+package core.control_structures;
 
 public class f4_operators {
     public static void main(String[] args) {

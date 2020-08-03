@@ -1,9 +1,5 @@
-package core.datastructure;
+package core.data_structure;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.val;
 import lombok.var;
 
 import java.io.IOException;

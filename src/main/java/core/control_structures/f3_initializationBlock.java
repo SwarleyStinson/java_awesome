@@ -1,4 +1,4 @@
-package core.controlstructures;
+package core.control_structures;
 
 class Parent {
     static {

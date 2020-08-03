@@ -22,7 +22,8 @@ public class RuntimeClass {
         System.out.println("Difference after GC call attempt: " + (freememory - Runtime.getRuntime().freeMemory() / 1024) + " kB");
 
         list = null;
-        Runtime.getRuntime().gc();
+//        Runtime.getRuntime().gc();
+        System.gc();
         System.out.println("Difference after Second GC call attempt: " + (freememory - Runtime.getRuntime().freeMemory() / 1024) + " kB");
 
     }

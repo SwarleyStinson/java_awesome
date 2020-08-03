@@ -1,4 +1,4 @@
-package core.datastructure;
+package core.data_structure;
 
 import java.util.Map;
 
