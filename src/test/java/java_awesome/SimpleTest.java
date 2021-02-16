@@ -18,7 +18,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.tcp.TcpClient;
-import spring.model.BookReq;
+import ru.stepanov.java_awesome.spring.model.BookReq;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;

@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.client.ClientResponse
 import reactor.core.publisher.Mono
-import spring.model.BookReq
+import ru.stepanov.java_awesome.spring.model.BookReq
 
 class Sender : SimpleTest() {
 
