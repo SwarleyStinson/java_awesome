@@ -1,4 +1,4 @@
-package java_awesome;
+package ru.stepanov.java_awesome;
 
 import io.netty.channel.ChannelOption;
 import io.netty.handler.ssl.ClientAuth;
@@ -8,7 +8,7 @@ import io.netty.handler.timeout.WriteTimeoutHandler;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;

@@ -1,5 +1,5 @@
-import java_awesome.Sender
-import org.junit.Test
+import org.junit.jupiter.api.Test
+import ru.stepanov.java_awesome.Sender
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 

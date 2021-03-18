@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spp
+    username: user
+    password: pass
+    driverClassName: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:/db/changelog.xml
+    enabled: true
+    user: user
+    password: pass
+

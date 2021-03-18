@@ -1,2 +1,6 @@
 server:
   port: 8181
+
+spring:
+  liquibase:
+    enabled: false

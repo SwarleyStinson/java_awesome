@@ -1,4 +1,4 @@
-package java_awesome
+package ru.stepanov.java_awesome
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.reactive.function.BodyInserters
