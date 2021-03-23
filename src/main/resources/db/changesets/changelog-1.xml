@@ -5,6 +5,12 @@
 
     <changeSet id="1" author="stepanovpp">
 
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="book"/>
+                <tableExists tableName="author"/>
+            </not>
+        </preConditions>
         <createTable tableName="book">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="2" author="stepanovpp">
+
+        <createIndex tableName="book" indexName="book_common_id_index">
+            <column name="common_id"></column>
+        </createIndex>
+        <createIndex tableName="book_series" indexName="book_series_common_id_index">
+            <column name="common_id"></column>
+        </createIndex>
+
+    </changeSet>
+</databaseChangeLog>

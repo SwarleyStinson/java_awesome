@@ -1,23 +1,29 @@
 package ru.stepanov.java_awesome.db;
 
+import javafx.util.Pair;
+import lombok.val;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import ru.stepanov.java_awesome.db.dao.Book;
-import ru.stepanov.java_awesome.db.dao.BookRepository;
+import ru.stepanov.java_awesome.db.dao.domain.Author;
+import ru.stepanov.java_awesome.db.dao.domain.Book;
+import ru.stepanov.java_awesome.db.dao.domain.BookSeries;
+import ru.stepanov.java_awesome.db.dao.repository.AuthorRepository;
+import ru.stepanov.java_awesome.db.dao.repository.BookRepository;
+import ru.stepanov.java_awesome.db.dao.repository.BookSeriesRepository;
+import wiremock.org.apache.commons.lang3.RandomStringUtils;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Random;
+import java.util.function.Supplier;
 
-@EnableJpaRepositories(basePackages = "ru.stepanov.java_awesome.db.dao")
-@EntityScan(basePackages = "ru.stepanov.java_awesome.db")
 @SpringBootApplication
 public class DbApp {
     public static void main(String[] args) {
@@ -25,21 +31,87 @@ public class DbApp {
     }
 
     @Bean
-    public CommandLineRunner demo(BookRepository repository) {
+    public CommandLineRunner demo(
+            BookRepository bookRepo,
+            AuthorRepository authorRepo,
+            BookSeriesRepository seriesRepo) {
         return (args) -> {
-            System.out.println(1);
-            repository.save(
-                    Book.builder()
-                            .author("Alex Pushkin")
-                            .title("Onegin")
-                            .totalPages(100)
-                            .releaseDate(LocalDateTime.now())
-                            .build()
-            );
+//            generateAuthors(bookRepo, authorRepo);
+//            generateBooks(bookRepo, authorRepo);
+//            generateBookSeries(bookRepo, seriesRepo);
 
-            System.out.println(2);
+            val single = runAndProfile(() -> bookRepo.findById(20L));
+            val list = runAndProfile(() -> bookRepo.findFiltered("Bob"));
+            val list2 = runAndProfile(() -> bookRepo.findAll());
+            System.out.println(1);
         };
     }
+
+    public Pair<Object, Long> runAndProfile(Supplier<Object> action) {
+        long startTime = System.currentTimeMillis();
+        return new Pair(action.get(), System.currentTimeMillis() - startTime);
+    }
+
+    public void generateBookSeries(BookRepository bookRepo, BookSeriesRepository seriesRepo) {
+        String[] names = {"Great", "Best", "Unique", "Wise", "Awesome", "Handsome", "Brave", "Strong"};
+        Random random = new Random();
+
+        bookRepo.findAll().forEach(r -> {
+            String commonId = RandomStringUtils.randomAlphabetic(25);
+            r.setCommonId(commonId);
+            bookRepo.save(r);
+
+            seriesRepo.save(BookSeries.builder()
+                    .commonId(commonId)
+                    .name(names[random.nextInt(7)] + RandomStringUtils.randomAlphabetic(4).toUpperCase())
+                    .edition(Integer.valueOf(RandomStringUtils.randomNumeric(3, 5)))
+                    .build());
+        });
+    }
+
+    public void generateAuthors(BookRepository bookRepo, AuthorRepository authorRepo) {
+        String[] names = {"Alex", "Bob", "Constantin", "Dmitry", "Eugeny", "Fedor", "George"};
+        String[] nicknames = {"Wise", "Awesome", "Handsome", "Brave", "Strong"};
+        String[] secondNames = {"Smith", "Johnson", "Erikson", "Mosby", "Stinson"};
+        Random random = new Random();
+
+        for (int j = 0; j < names.length; j++) {
+            for (int k = 0; k < nicknames.length; k++) {
+                for (int l = 0; l < secondNames.length; l++) {
+                    authorRepo.save(Author.builder()
+                            .fullName(names[j] + " " + nicknames[k] + " " + secondNames[l])
+                            .birthDate(LocalDateTime.now()
+                                    .minusYears(random.nextInt(100))
+                                    .minusMonths(random.nextInt(12))
+                                    .minusDays(random.nextInt(31))
+                            )
+                            .build());
+                }
+            }
+        }
+    }
+
+    public void generateBooks(BookRepository bookRepo, AuthorRepository authorRepo) {
+        String[] first = {"The history", "Tale", "Saga", "Poem", "Novel", "Ballad", "Epic"};
+        String[] nicknames = {"Wise", "Awesome", "Handsome", "Brave", "Strong"};
+        Random random = new Random();
+        List<Author> authors = (List<Author>) authorRepo.findAll();
+
+        for (int j = 0; j < first.length; j++) {
+            for (int k = 0; k < nicknames.length; k++) {
+                Author author = authors.get(random.nextInt(authors.size()));
+                bookRepo.save(
+                        Book.builder()
+                                .author(author.getFullName())
+                                .title(first[j] + " about " + nicknames[k] + " " + RandomStringUtils.randomAlphabetic(4))
+                                .totalPages(random.nextInt(2_500))
+                                .releaseDate(author.getBirthDate().plusYears(10 + random.nextInt(20)))
+                                .build()
+                );
+            }
+        }
+    }
+
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {

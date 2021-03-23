@@ -9,7 +9,7 @@ class Generator {
 //    JdbcTemplate jdbcTemplate;
 //
 //    @Test
-//    void generate() {
+//    void generateAuthors() {
 //        jdbcTemplate.execute(
 //                "INSERT INTO books"
 //        );

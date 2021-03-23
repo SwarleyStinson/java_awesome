@@ -6,4 +6,6 @@
                    logicalFilePath="master.xml">
 
     <include file="changesets/changelog-1.xml" relativeToChangelogFile="true"/>
+    <include file="changesets/changelog-2.xml" relativeToChangelogFile="true"/>
+    <include file="changesets/changelog-3.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
