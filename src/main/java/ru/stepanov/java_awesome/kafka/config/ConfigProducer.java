@@ -17,9 +17,9 @@ import static org.apache.kafka.clients.producer.ProducerConfig.VALUE_SERIALIZER_
 
 @Configuration
 @RequiredArgsConstructor
-public class ProducerConfig {
+public class ConfigProducer {
 
-    private final KafkaProps properties;
+    private final Properties properties;
 
     @Bean
     public ProducerFactory<String, String> producerFactory() {

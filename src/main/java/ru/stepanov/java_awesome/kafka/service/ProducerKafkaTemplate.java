@@ -8,7 +8,7 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFutureCallback;
-import ru.stepanov.java_awesome.kafka.config.KafkaProps;
+import ru.stepanov.java_awesome.kafka.config.Properties;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 @RequiredArgsConstructor
 public class ProducerKafkaTemplate {
 
-    private final KafkaProps props;
+    private final Properties props;
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
