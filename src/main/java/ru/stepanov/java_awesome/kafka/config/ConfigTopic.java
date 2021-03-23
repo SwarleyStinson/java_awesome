@@ -24,8 +24,8 @@ public class ConfigTopic {
     }
 
     @Bean
-    public NewTopic topic1() {
-        return new NewTopic(properties.topic, 2, (short) 1);
+    public NewTopic createTopic() {
+        return new NewTopic(properties.topic, 1, (short) 1);
     }
 
 }

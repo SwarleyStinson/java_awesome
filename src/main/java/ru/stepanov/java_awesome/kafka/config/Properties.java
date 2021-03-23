@@ -11,6 +11,6 @@ public class Properties {
     @Value("${spp.kafka.group}")
     String group;
 
-    @Value("${spp.kafka.bootstrapServers}")
+    @Value("${spp.kafka.bootstrapServer}")
     String bootstrapServers;
 }
