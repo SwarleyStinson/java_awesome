@@ -13,7 +13,6 @@ services:
     image: wurstmeister/kafka:2.12-2.3.0
     environment:
       # KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
-      # KAFKA_CREATE_TOPICS: "simple-message:1:1"
       KAFKA_ADVERTISED_HOST_NAME: kafka
       KAFKA_ADVERTISED_LISTENERS: >-
         LISTENER_DOCKER_INTERNAL://kafka:19092,
@@ -23,14 +22,10 @@ services:
         LISTENER_DOCKER_EXTERNAL://:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: >-
         LISTENER_DOCKER_INTERNAL:PLAINTEXT,
-                                              LISTENER_DOCKER_EXTERNAL:PLAINTEXT
+        LISTENER_DOCKER_EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_LOG4J_LOGGERS: >-
-        kafka.controller=INFO,
-        kafka.producer.async.DefaultEventHandler=INFO,
-        state.change.logger=INFO
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     ports:
       - 9092:9092
       - 19092:19092
@@ -46,3 +41,5 @@ services:
       KAFKA_BROKERCONNECT: kafka:19092
     ports:
       - 3333:9000
+    depends_on:
+      - kafka

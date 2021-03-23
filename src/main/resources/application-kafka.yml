@@ -1,0 +1,11 @@
+server:
+  port: 8181
+
+logging.level.root: ERROR
+
+spp:
+  kafka:
+    topic: russian-mail
+    group: spp-group
+    bootstrapServer: localhost:9092
+

@@ -1,24 +1,35 @@
-package ru.stepanov.java_awesome.kafka;
+package ru.stepanov.java_awesome.kafka.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFutureCallback;
+import ru.stepanov.java_awesome.kafka.config.KafkaProps;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class KafkaProducer {
+@Service
+@RequiredArgsConstructor
+public class ProducerKafkaTemplate {
+
+    private final KafkaProps props;
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
 
-    public void sendMessage(String topic, String message) {
+    @Scheduled(fixedDelay = 5_000)
+    public void scheduleSend() {
+        sendMessage(props.topic, "Hello from " + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME));
+    }
+
+
+    void sendMessage(String topic, String message) {
         val future = kafkaTemplate.send(topic, message);
 
         future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
@@ -33,16 +44,4 @@ public class KafkaProducer {
             }
         });
     }
-
-
-    @PostConstruct
-    public void scheduleSend() {
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                sendMessage("testTopic", "Hello from " + LocalDateTime.now().format(DateTimeFormatter.ISO_DATE));
-            }
-        }, 5_000);
-    }
-
 }

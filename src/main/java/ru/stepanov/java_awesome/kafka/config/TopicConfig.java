@@ -1,7 +1,9 @@
 package ru.stepanov.java_awesome.kafka.config;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,22 +13,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class KafkaTopicConfig {
+@RequiredArgsConstructor
+public class TopicConfig {
 
-    //    @Value(value = "${kafka.bootstrapAddress}")
-    @Value(value = "localhost:9092")
-    private String bootstrapAddress;
+    private final KafkaProps properties;
 
     @Bean
     public KafkaAdmin kafkaAdmin() {
         Map<String, Object> configs = new HashMap<>();
-        configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+        configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, properties.bootstrapServers);
         return new KafkaAdmin(configs);
     }
 
     @Bean
     public NewTopic topic1() {
-        return new NewTopic("testTopic", 1, (short) 1);
+        return new NewTopic(properties.topic, 2, (short) 1);
     }
 
 }
