@@ -1,4 +1,4 @@
-package ru.stepanov.java_awesome.kafka.config;
+package ru.stepanov.java_awesome.kafka.consumer_1.config;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.common.serialization.StringDeserializer;

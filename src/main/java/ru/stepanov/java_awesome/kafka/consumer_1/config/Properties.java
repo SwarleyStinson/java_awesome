@@ -1,4 +1,4 @@
-package ru.stepanov.java_awesome.kafka.config;
+package ru.stepanov.java_awesome.kafka.consumer_1.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package ru.stepanov.java_awesome.kafka;
+package ru.stepanov.java_awesome.kafka.consumer_2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

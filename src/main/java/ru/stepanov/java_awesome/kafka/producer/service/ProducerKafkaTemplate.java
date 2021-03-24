@@ -1,4 +1,4 @@
-package ru.stepanov.java_awesome.kafka.service;
+package ru.stepanov.java_awesome.kafka.producer.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -8,7 +8,7 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFutureCallback;
-import ru.stepanov.java_awesome.kafka.config.Properties;
+import ru.stepanov.java_awesome.kafka.producer.config.Properties;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,15 +17,19 @@ import java.time.format.DateTimeFormatter;
 @RequiredArgsConstructor
 public class ProducerKafkaTemplate {
 
+    static long counter = 0;
+
     private final Properties props;
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
 
-    @Scheduled(fixedDelay = 5_000)
+    @Scheduled(fixedDelay = 1_000)
     public void scheduleSend() {
-        sendMessage(props.topic, "Hello from " + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME));
+        sendMessage(props.topic, "Hello from " + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME)
+                + "'   (num " + ++counter + ")"
+        );
     }
 
 
@@ -35,7 +39,7 @@ public class ProducerKafkaTemplate {
         future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
             @Override
             public void onSuccess(SendResult<String, String> result) {
-                System.out.println("SEND:'" + message + "', with offset:'" + result.getRecordMetadata().offset() + "'");
+                System.out.println("SEND:'" + message + "', with offset:'" + result.getRecordMetadata().offset());
             }
 
             @Override

@@ -1,6 +1,17 @@
-server:
-  port: 8181
-
 spring:
   liquibase:
     enabled: false
+
+
+---
+spring.config.activate.on-profile: producer
+server.port: 8001
+
+---
+spring.config.activate.on-profile: consumer-1
+server.port: 8002
+
+---
+spring.config.activate.on-profile: consumer-2
+server.port: 8003
+---
