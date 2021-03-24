@@ -1,7 +1,11 @@
 logging.level.root: ERROR
+logging.level.ru.stepanov: DEBUG
+
 spp:
   kafka:
     topic: russian-mail
     group: spp-group
     bootstrapServer: localhost:9092
+    sessionTimeoutMillis: 1000
+    rebalanceTimeoutMillis: 1000
 

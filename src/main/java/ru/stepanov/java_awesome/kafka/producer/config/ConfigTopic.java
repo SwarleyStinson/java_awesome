@@ -23,7 +23,7 @@ public class ConfigTopic {
         return new KafkaAdmin(configs);
     }
 
-    @Bean
+//    @Bean
     public NewTopic createTopic() {
         return new NewTopic(properties.topic, 1, (short) 1);
     }

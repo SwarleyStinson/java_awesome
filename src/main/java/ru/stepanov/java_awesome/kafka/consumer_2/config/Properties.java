@@ -13,4 +13,10 @@ public class Properties {
 
     @Value("${spp.kafka.bootstrapServer}")
     String bootstrapServers;
+
+    @Value("${spp.kafka.sessionTimeoutMillis}")
+    String sessionTimeoutMillis;
+
+    @Value("${spp.kafka.rebalanceTimeoutMillis}")
+    String rebalanceTimeoutMillis;
 }

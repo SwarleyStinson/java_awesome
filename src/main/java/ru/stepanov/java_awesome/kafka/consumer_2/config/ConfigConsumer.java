@@ -29,6 +29,7 @@ public class ConfigConsumer {
         Map<String, Object> config = new HashMap<>();
         config.put(BOOTSTRAP_SERVERS_CONFIG, properties.bootstrapServers);
         config.put(GROUP_ID_CONFIG, properties.group);
+
         config.put(KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         return new DefaultKafkaConsumerFactory<>(config);
