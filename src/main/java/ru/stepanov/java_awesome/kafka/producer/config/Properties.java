@@ -13,4 +13,7 @@ public class Properties {
 
     @Value("${spp.kafka.bootstrapServer}")
     String bootstrapServers;
+
+    @Value("${spp.kafka.acks}")
+    String acks;
 }

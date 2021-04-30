@@ -27,15 +27,18 @@ public class ProducerKafkaTemplate {
 
     @Scheduled(fixedDelay = 1_000)
     public void scheduleSend() {
-        sendMessage(props.topic, "Hello from " + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME)
-                + "'   (num " + ++counter + ")"
-        );
+        try {
+            sendMessage(props.topic, "Hello from " + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME)
+                    + "'   (num " + ++counter + ")"
+            );
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 
 
     void sendMessage(String topic, String message) {
         val future = kafkaTemplate.send(topic, message);
-
         future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
             @Override
             public void onSuccess(SendResult<String, String> result) {

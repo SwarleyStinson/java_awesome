@@ -181,6 +181,22 @@
             <version>42.2.18</version>
         </dependency>
 
+        <!-- SECURITY -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-ext-jdk15on</artifactId>
+            <version>1.68</version>
+        </dependency>
+
+        <!-- JPOS -->
+        <dependency>
+            <groupId>org.jpos</groupId>
+            <artifactId>jpos</artifactId>
+            <version>2.1.6</version>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>

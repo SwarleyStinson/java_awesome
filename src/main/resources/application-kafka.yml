@@ -5,7 +5,8 @@ spp:
   kafka:
     topic: russian-mail
     group: spp-group
-    bootstrapServer: localhost:9092
+    acks: all
+    bootstrapServer: localhost:9095
     sessionTimeoutMillis: 1000
     rebalanceTimeoutMillis: 1000
 
