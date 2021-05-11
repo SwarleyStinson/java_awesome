@@ -43,7 +43,7 @@ public class RSA_second_attempt {
         //encrypt
 //        byte[] resE = encrypt(publicKey, originalBytes);
 //        System.out.println("Encrypted String len = " + resE.length);
-//        System.out.println(Hex.encodeHexString(resE));
+//        System.out.println(HexCoding.encodeHexString(resE));
 
         //decrypt
         byte[] resD = decrypt(privateKey, originalBytes);
