@@ -1,4 +1,4 @@
-package ru.stepanov.java_awesome.core.concurrency;
+package ru.stepanov.java_awesome.concurrency;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -10,12 +10,12 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import ru.stepanov.java_awesome.db.dao.domain.Author;
-import ru.stepanov.java_awesome.db.dao.domain.Book;
-import ru.stepanov.java_awesome.db.dao.domain.BookSeries;
-import ru.stepanov.java_awesome.db.dao.repository.AuthorRepository;
-import ru.stepanov.java_awesome.db.dao.repository.BookRepository;
-import ru.stepanov.java_awesome.db.dao.repository.BookSeriesRepository;
+import ru.stepanov.java_awesome.db.jpa.domain.Author;
+import ru.stepanov.java_awesome.db.jpa.domain.Book;
+import ru.stepanov.java_awesome.db.jpa.domain.BookSeries;
+import ru.stepanov.java_awesome.db.jpa.repository.AuthorRepository;
+import ru.stepanov.java_awesome.db.jpa.repository.BookRepository;
+import ru.stepanov.java_awesome.db.jpa.repository.BookSeriesRepository;
 import wiremock.org.apache.commons.lang3.RandomStringUtils;
 
 import javax.sql.DataSource;

@@ -1,12 +1,12 @@
 package ru.stepanov.java_awesome.bestpractice;
 
 //how to make immutable
-//1. no setters
-//2. private final fields ()
-//3. final class
-//4. dont't return mutable objects
+//  1. no setters
+//  2. private final fields ()
+//  3. final class
+//  4. dont't return mutable objects
 /** advantages:
- * thread safe no sync, good for cashing
+ * thread safe no sync, good for caching
  * */
 public final class ImmutableClass {
     private final int i;

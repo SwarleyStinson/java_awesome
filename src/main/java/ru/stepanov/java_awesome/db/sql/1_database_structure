@@ -1,0 +1,22 @@
+CREATE DATABASE middleearth;
+DROP DATABASE middleearth;
+
+-- CREATE TABLE IF NOT EXISTS table_name (
+--     column1 DATA_TYPE(n) column_constraint,
+--     table_constraints
+-- );
+
+-- ALTER TABLE table_name
+--     ALTER COLUMN column_name_1 SET NOT NULL,
+--     ALTER COLUMN column_name_2 SET NOT NULL,
+--     ...;
+
+ALTER TABLE table_name
+    ADD CONSTRAINT constraint_name
+        CHECK (
+                column1 NOTNULL NOT IN ('black')
+                AND column2 > 0);
+
+
+
+

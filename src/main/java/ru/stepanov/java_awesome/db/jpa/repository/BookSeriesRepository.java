@@ -1,7 +1,7 @@
-package ru.stepanov.java_awesome.db.dao.repository;
+package ru.stepanov.java_awesome.db.jpa.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.stepanov.java_awesome.db.dao.domain.BookSeries;
+import ru.stepanov.java_awesome.db.jpa.domain.BookSeries;
 
 public interface BookSeriesRepository extends CrudRepository<BookSeries, Long> {
 }

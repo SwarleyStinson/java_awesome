@@ -1,17 +1,16 @@
-package ru.stepanov.java_awesome.spring.web;
+package ru.stepanov.java_awesome.spring.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.stepanov.java_awesome.spring.model.BookReq;
-
-import java.util.Map;
 
 @Controller
 @Slf4j
@@ -20,11 +19,10 @@ public class MainController {
     private final ObjectMapper mapper;
 
     @GetMapping("/")
-    @ResponseBody
-    public String index(Map<String, Object> model) {
+    public String index(Model model) {
+        System.out.println("ЗАШЕЛ");
         return "index";
     }
-
 
     @SneakyThrows
     @PostMapping(

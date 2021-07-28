@@ -6,8 +6,8 @@ services:
     image: postgres:13-alpine
     environment:
       POSTGRES_DB: spp
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
       - 5432:5432
 
@@ -20,3 +20,7 @@ services:
       - ./servers.json:/pgadmin4/servers.json:ro
     ports:
       - 8090:80
+    links:
+      - postgres
+    depends_on:
+      - postgres

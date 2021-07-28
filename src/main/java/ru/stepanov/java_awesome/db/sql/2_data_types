@@ -1,0 +1,37 @@
+-- BOOLEAN    | TRUE  (1, yes, y, true, t),
+--            | FALSE (0, no, false, f), NULL
+
+-- CHAR (n)     | fixed-length  +  space padding if insert short
+-- VARCHAR (n)  | variable-length
+-- TEXT         | unlimit-variable-length (theretical)
+
+-- SERIAL         |  aka autoincrement
+-- SMALLINTEGER   |  2 byte  ->  -32,768 to 32,767
+-- INTEGER        |  4 byte  ->  -2,147,483,648 to 2,147,483,647
+
+-- FLOAT(n)               | n to 8byte as max
+-- REAL, FLOAT8           | 4 byte
+-- NUMERIC, NUMERIC(p, s) | p digits + s number after decimal
+
+-- DATE
+-- TIME
+-- TIMESTAMP
+-- TIMESTAMPTZ
+-- INTERVAL
+
+-- JSON   | plain json,     requires re-parsing for each time
+-- JSONB  | binary format,  faster to process, slowly to insert
+
+-- UUID
+
+-- Array
+
+-- BOX         | a rectangular box.
+-- LINE        | a set of points.
+-- POINT       | a geometric pair of numbers.
+-- LSEG        | a line segment.
+-- POLYGON     | a closed geometric.
+-- INET        | an IP4 address.
+-- MACADDR     | a MAC address.
+
+

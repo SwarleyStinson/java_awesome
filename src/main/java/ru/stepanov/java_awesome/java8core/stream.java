@@ -12,21 +12,22 @@ public class stream {
         map.put("param2", new String[]{"value2"});
         map.put("param3", new String[]{"value3"});
 
-        Map<String, String> result = map.entrySet().stream()
-                .collect(Collectors.toMap(x -> x.getKey(), x -> (x.getValue())[0]));
-        System.out.println(1);
-    }
-}
-
-class A {
-    String field;
-    List<String> list;
-
-    public A(String field, List<String> list) {
-        this.field = field;
-        this.list = list;
+        Map<String, String> result =
+                map.entrySet().stream()
+                        .collect(Collectors.toMap(x -> x.getKey(), x -> (x.getValue())[0]));
+        System.out.println(result);
     }
 
-    public A() {
+    class A {
+        String field;
+        List<String> list;
+
+        public A(String field, List<String> list) {
+            this.field = field;
+            this.list = list;
+        }
+
+        public A() {
+        }
     }
 }

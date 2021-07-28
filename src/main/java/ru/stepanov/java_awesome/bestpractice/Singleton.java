@@ -13,7 +13,6 @@ public class Singleton implements Serializable {
 
     enum MySingleton {
         INSTANCE;
-
     }
 
     /**

@@ -1,9 +1,9 @@
-package ru.stepanov.java_awesome.db.dao.repository;
+package ru.stepanov.java_awesome.db.jpa.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import ru.stepanov.java_awesome.db.dao.domain.Book;
+import ru.stepanov.java_awesome.db.jpa.domain.Book;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ru.stepanov.java_awesome.db.dao.domain;
+package ru.stepanov.java_awesome.db.jpa.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

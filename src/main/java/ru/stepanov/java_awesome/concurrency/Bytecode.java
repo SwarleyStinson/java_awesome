@@ -1,4 +1,4 @@
-package ru.stepanov.java_awesome.core.concurrency;
+package ru.stepanov.java_awesome.concurrency;
 
 public class Bytecode {
     public static void main(String[] args) {

@@ -1,0 +1,10 @@
+-- NOT NULL      |
+-- UNIQUE        |
+-- PRIMARY KEY   | (column1, column2)
+-- FOREIGN KEY   | (column1) REFERENCES another_table (column2)
+-- CHECK         | satisfy boolean expression
+
+
+-- CHECK
+-- column_name DATA_TYPE CONSTRAINT constraint_name CHECK(...)
+
