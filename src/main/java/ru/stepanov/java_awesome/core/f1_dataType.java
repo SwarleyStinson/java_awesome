@@ -50,5 +50,7 @@ public class f1_dataType {
         System.out.println(Boolean.valueOf("1"));
         System.out.println(Boolean.valueOf(null));
         System.out.println(Boolean.getBoolean(null));
+
+        System.out.println(1.03 - 0.42);
     }
 }
