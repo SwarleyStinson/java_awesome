@@ -15,6 +15,7 @@ public class f7_serialization {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         User user = new User();
         user.level = 55;
+        user.object = "transient";
 
         FileOutputStream fileOutputStream = new FileOutputStream("temp");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);

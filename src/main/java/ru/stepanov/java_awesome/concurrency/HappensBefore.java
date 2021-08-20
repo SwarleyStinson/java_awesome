@@ -7,7 +7,6 @@ import java.util.concurrent.Executors;
 
 import static java.text.MessageFormat.format;
 
-
 public class HappensBefore {
     int a = 0, b = 0, c = 0;
     volatile int x = 0;
