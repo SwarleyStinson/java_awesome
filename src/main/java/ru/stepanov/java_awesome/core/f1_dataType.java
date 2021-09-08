@@ -52,5 +52,6 @@ public class f1_dataType {
         System.out.println(Boolean.getBoolean(null));
 
         System.out.println(1.03 - 0.42);
+        System.out.println(13 / 2);
     }
 }
