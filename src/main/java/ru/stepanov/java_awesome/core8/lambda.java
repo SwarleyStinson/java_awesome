@@ -1,4 +1,4 @@
-package ru.stepanov.java_awesome.java8core;
+package ru.stepanov.java_awesome.core8;
 
 import java.util.Arrays;
 import java.util.List;
