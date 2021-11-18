@@ -1,4 +1,4 @@
-package ru.stepanov.java_awesome.spring.web.config;
+package ru.stepanov.webapp.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
