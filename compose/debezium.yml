@@ -34,15 +34,6 @@ services:
 
   postgres:
     container_name: postgres
-    image: debezium/example-postgres:1.0
-    ports:
-      - 5432:5432
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-
-  postgres2:
-    container_name: postgres2
     image: postgres:13-alpine
     ports:
       - 5401:5432
@@ -51,15 +42,46 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
-  debezium:
-    container_name: debezium
-    image: debezium/connect:1.0
+  postgres2:
+    container_name: postgres2
+    image: postgres:13-alpine
+    ports:
+      - 5402:5432
+    environment:
+      - POSTGRES_DB=newperf
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  #  debezium:
+  #    container_name: source-debezium
+  #    image: debezium/connect:1.7.2.Final
+  #    ports:
+  #      - 8083:8083
+  #    links:
+  #      - zookeeper
+  #      - kafka
+  #      - postgres
+  #    environment:
+  #      - BOOTSTRAP_SERVERS=kafka:9092
+  #      - GROUP_ID=1
+  #      - CONFIG_STORAGE_TOPIC=my_connect_configs   # конфиги коннектора и его задания
+  #      - OFFSET_STORAGE_TOPIC=my_connect_offsets   # позиции, на которых находится коннектор
+  #      - STATUS_STORAGE_TOPIC=my_connect_statuses  # статус коннектора
+  #    depends_on:
+  #      - zookeeper
+  #      - kafka
+  #      - postgres
+
+  kafka-connect:
+    container_name: kafka-connect
+    image: kafka-connect
     ports:
       - 8083:8083
     links:
-      - zookeeper
       - kafka
+      - zookeeper
       - postgres
+      - postgres2
     environment:
       - BOOTSTRAP_SERVERS=kafka:9092
       - GROUP_ID=1
@@ -67,39 +89,95 @@ services:
       - OFFSET_STORAGE_TOPIC=my_connect_offsets   # позиции, на которых находится коннектор
       - STATUS_STORAGE_TOPIC=my_connect_statuses  # статус коннектора
     depends_on:
-      - zookeeper
       - kafka
       - postgres
-
-  jdbc-sink:
-    image: confluentinc/cp-kafka-connect
-    container_name: kafka-connect-jdbc-sink
-    links:
-      - zookeeper
-      - kafka
       - postgres2
-    ports:
-      - 28083:8083
-    environment:
-      - CONNECT_ZOOKEEPER_CONNECT=zookeeper:2181
-      - CONNECT_BOOTSTRAP_SERVERS=kafka:9092
-      - CONNECT_REST_PORT=28083
-      - CONNECT_GROUP_ID="sink-connect"
-      - CONNECT_CONFIG_STORAGE_TOPIC="sink-config"
-      - CONNECT_OFFSET_STORAGE_TOPIC="sink-offsets"
-      - CONNECT_STATUS_STORAGE_TOPIC="sink-status"
-      - CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR=1
-      - CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR=1
-      - CONNECT_STATUS_STORAGE_REPLICATION_FACTOR=1
-      - CONNECT_KEY_CONVERTER="io.confluent.connect.avro.AvroConverter"
-      - CONNECT_VALUE_CONVERTER="io.confluent.connect.avro.AvroConverter"
-      - CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL="http://localhost:8081"
-      - CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL="http://localhost:8081"
-      - CONNECT_INTERNAL_KEY_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
-      - CONNECT_INTERNAL_VALUE_CONVERTER="org.apache.kafka.connect.json.JsonConverter"
-      - CONNECT_REST_ADVERTISED_HOST_NAME="localhost"
-      - CONNECT_LOG4J_ROOT_LOGLEVEL=INFO
-      - CONNECT_PLUGIN_PATH=/usr/share/java,/etc/kafka-connect/jars
-    volumes:
-      - /tmp/quickstart/file:/tmp/quickstart
-      - /tmp/quickstart/jars:/etc/kafka-connect/jars
+
+#  schema-registry:
+#    image: confluentinc/cp-schema-registry:6.1.0
+#    container_name: schema-registry
+#    depends_on:
+#      - zookeeper
+#      - kafka
+#    ports:
+#      - 8081:8081
+#    environment:
+#      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zookeeper:2181
+#      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+#
+#  sink-jdbc:
+#    image: confluentinc/cp-kafka-connect:5.5.7
+#    container_name: sink-jdbc
+#    links:
+#      - zookeeper
+#      - kafka
+#      - postgres2
+#    ports:
+#      - 8083:8083
+#    depends_on:
+#      - zookeeper
+#      - kafka
+#      - postgres
+#      - schema-registry
+#    environment:
+#      - CONNECT_BOOTSTRAP_SERVERS=kafka:9092
+#      - CONNECT_ZOOKEEPER_CONNECT=zookeeper:2181
+#      - CONNECT_REST_PORT=8083
+#      - CONNECT_GROUP_ID=sink_connect_1
+#      - CONNECT_CONFIG_STORAGE_TOPIC=sink_config
+#      - CONNECT_OFFSET_STORAGE_TOPIC=sink_offsets
+#      - CONNECT_STATUS_STORAGE_TOPIC=sink_status
+#      - CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR=1
+#      - CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR=1
+#      - CONNECT_STATUS_STORAGE_REPLICATION_FACTOR=1
+#      - CONNECT_KEY_CONVERTER=io.confluent.connect.avro.AvroConverter
+#      - CONNECT_VALUE_CONVERTER=io.confluent.connect.avro.AvroConverter
+#      - CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL=http://localhost:8081
+#      - CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL=http://localhost:8081
+#      - CONNECT_REST_ADVERTISED_HOST_NAME=localhost
+#      - CONNECT_LOG4J_ROOT_LOGLEVEL=INFO
+#      - CONNECT_PLUGIN_PATH=/usr/share/java,/etc/kafka-connect/jars
+
+#  kafka-connect:
+#    image: confluentinc/cp-kafka-connect-base:6.1.0
+#    container_name: kafka-connect
+#    depends_on:
+#      - kafka
+#      - schema-registry
+#    ports:
+#      - 8083:8083
+#    environment:
+#      CONNECT_BOOTSTRAP_SERVERS: kafka:29092
+#      CONNECT_REST_ADVERTISED_HOST_NAME: kafka-connect
+#      CONNECT_REST_PORT: 8083
+#      CONNECT_GROUP_ID: kafka-connect
+#      CONNECT_CONFIG_STORAGE_TOPIC: _kafka-connect-configs
+#      CONNECT_OFFSET_STORAGE_TOPIC: _kafka-connect-offsets
+#      CONNECT_STATUS_STORAGE_TOPIC: _kafka-connect-status
+#      CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
+#      CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+#      CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
+#      CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+#      CONNECT_LOG4J_ROOT_LOGLEVEL: INFO
+#      CONNECT_LOG4J_LOGGERS: org.apache.kafka.connect.runtime.rest=WARN,org.reflections=ERROR
+#      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+#      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+#      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+#      CONNECT_PLUGIN_PATH: /usr/share/java,/usr/share/confluent-hub-components/,/connectors/
+#    volumes:
+#      - $PWD/connectors:/connectors
+#    command:
+#      - bash
+#      - -c
+#      - |
+#      -  echo "Installing connector plugins"
+#      -  confluent-hub install --no-prompt mdrogalis/voluble:0.3.1
+#      -  confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:5.5.3
+#      -  echo "Downloading JDBC driver"
+#      -  cd /usr/share/confluent-hub-components/confluentinc-kafka-connect-jdbc
+#      -  curl https://cdn.mysql.com/Downloads/Connector-J/mysql-connector-java-8.0.23.tar.gz | tar xz
+#      -  #
+#      -  echo "Launching Kafka Connect worker"
+#      -  /etc/confluent/docker/run &
+#      -  #
+#      -  sleep infinity

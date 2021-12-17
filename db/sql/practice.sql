@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS nations
 (
+    id         SERIAL PRIMARY KEY,
     name       VARCHAR(60) NOT NULL UNIQUE,
     side       VARCHAR(60),
     population BIGINT
