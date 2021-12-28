@@ -1,0 +1,2 @@
+spring.config.activate.on-profile: producer
+server.port: 8001

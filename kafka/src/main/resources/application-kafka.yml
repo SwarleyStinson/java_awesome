@@ -1,0 +1,17 @@
+logging.level:
+  root: ERROR
+  ru.stepanov: DEBUG
+  org.springframework.retry.backoff: DEBUG
+
+
+spp:
+  kafka:
+    topic: russian-mail
+    group: stepanov-group
+    acks: all
+    bootstrapServer: localhost:9092
+    sessionTimeoutMillis: 1000
+    rebalanceTimeoutMillis: 1000
+
+
+
