@@ -15,7 +15,7 @@ public class StopListenerErrorHandler extends ContainerStoppingErrorHandler {
 
     @Override
     public void handle(Exception e, List<ConsumerRecord<?, ?>> records, Consumer<?, ?> consumer, MessageListenerContainer container) {
-//        log.error("sheet happens : ", e);
+        log.error("Kafka listener was stopped: " + container.getListenerId());
         super.handle(e, records, consumer, container);
     }
 }

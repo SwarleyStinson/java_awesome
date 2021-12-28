@@ -47,6 +47,6 @@ public class Consumer {
             Thread.sleep(1_000);
         }
 
-        System.out.println("PROCESSED : " + message);
+        System.out.println(now().format(ISO_TIME) + " PROCESSED : " + message);
     }
 }

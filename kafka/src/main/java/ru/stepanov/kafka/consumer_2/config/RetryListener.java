@@ -11,19 +11,17 @@ public class RetryListener extends RetryListenerSupport {
 
     @Override
     public <T, E extends Throwable> boolean open(RetryContext context, RetryCallback<T, E> callback) {
-        logger.error("Processing error. Srt retry attempts", context.getLastThrowable());
+
         return super.open(context, callback);
     }
 
     @Override
-    public <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback, Throwable throwable) {
-        logger.error("Stop retry attempt.");
-        super.close(context, callback, throwable);
-    }
-
-    @Override
     public <T, E extends Throwable> void onError(RetryContext context, RetryCallback<T, E> callback, Throwable throwable) {
-        logger.error("Retry attempt failed. ", context.getLastThrowable());
+        if (context.getRetryCount() == 1) {
+            logger.error("Processing error. Start retry attempts", context.getLastThrowable());
+        } else {
+            logger.error("Retry attempt " + (context.getRetryCount() - 1) + " failed. ", context.getLastThrowable());
+        }
         super.onError(context, callback, throwable);
     }
 }

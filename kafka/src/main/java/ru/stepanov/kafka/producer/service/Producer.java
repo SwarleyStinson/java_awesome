@@ -25,18 +25,18 @@ public class Producer {
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    @Scheduled(fixedDelay = 1_000)
-    public void scheduleSend() {
-        try {
-            sendMessage("heartbeat", "knock-knock " + ++counter);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-    }
+//    @Scheduled(fixedDelay = 1_000)
+//    public void scheduleSend() {
+//        try {
+//            sendMessage("heartbeat", "knock-knock " + ++counter);
+//        } catch (Exception e) {
+//            System.err.println(e.getMessage());
+//        }
+//    }
 
     @PostConstruct
     public void init() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 1; i <= 5; i++) {
             try {
                 sendMessage(
                         props.topic,
