@@ -1,7 +1,5 @@
 package ru.stepanov.core.core.data_structure;
 
-import lombok.var;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -26,7 +24,7 @@ public class MapToString {
 
     private static String getHostFromUrl(String url) throws URISyntaxException {
         URI uri = new URI(url);
-        var host = uri.getHost();
+        String host = uri.getHost();
         if (!isNullOrEmpty(host)) {
             return host;
         }
@@ -36,7 +34,7 @@ public class MapToString {
 
     private static int getPortFromUrl(String url) throws URISyntaxException {
         URI uri = new URI(url);
-        var port = uri.getPort();
+        int port = uri.getPort();
         if (port != -1) {
             return port;
         }
