@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.Random;
+import java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy;
 
 public class ThreadPoolTaskExecutor_example {
 
@@ -11,16 +12,20 @@ public class ThreadPoolTaskExecutor_example {
     public static void main(String[] args) {
         ThreadPoolTaskExecutor pool = new ThreadPoolTaskExecutor();
         pool.setCorePoolSize(1);
-        pool.setMaxPoolSize(5);
-        pool.setQueueCapacity(20);
+        pool.setMaxPoolSize(15);
+        pool.setQueueCapacity(0);
         pool.setKeepAliveSeconds(3);
-        pool.initialize();
 
+        /** если пул заполнен, работай в потоке вызова */
+        pool.setRejectedExecutionHandler(new CallerRunsPolicy());
+
+        pool.initialize();
         Random random = new Random();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 90; i++) {
+            System.out.print(i + ",");
             pool.submit(() -> {
                 try {
-                    Thread.sleep(random.nextInt(10) * 1_000 + 1_000);
+                    Thread.sleep(random.nextInt(4) * 1_000 + 2_000);
                 } catch (InterruptedException e) {
                 }
             });
