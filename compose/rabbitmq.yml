@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.9
+    ports:
+      - 5552:5552
+      - 5555:15672
+    environment:
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS='-rabbitmq_stream advertised_host localhost'

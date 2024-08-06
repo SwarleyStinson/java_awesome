@@ -12,6 +12,3 @@ spp:
     bootstrapServer: localhost:9092
     sessionTimeoutMillis: 1000
     rebalanceTimeoutMillis: 1000
-
-
-

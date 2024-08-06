@@ -4,19 +4,26 @@ services:
 
   zookeeper:
     container_name: zookeeper
-    image: debezium/zookeeper:1.0
+    image: bitnami/zookeeper:3.9
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: yes
     ports:
       - 2181:2181
       - 2888:2888
       - 3888:3888
+#    volumes:
+#      - "zookeeper_data:/bitnami"
 
   kafka:
     container_name: kafka
-    image: debezium/kafka:1.0
+#    image: debezium/kafka:1.0
+    image: bitnami/kafka:3.4
     ports:
       - 9092:9092
     environment:
-      - ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+#    volumes:
+#      - "kafka_volume:/bitnami"
     links:
       - zookeeper
     depends_on:
@@ -24,7 +31,7 @@ services:
 
   kafdrop:
     container_name: kafdrop
-    image: obsidiandynamics/kafdrop
+    image: robsonribeiro/kafdrop-arm64:3.27.0
     environment:
       KAFKA_BROKERCONNECT: kafka:9092
     ports:
@@ -32,25 +39,31 @@ services:
     depends_on:
       - kafka
 
-  postgres:
-    container_name: postgres
-    image: postgres:13-alpine
-    ports:
-      - 5401:5432
-    environment:
-      - POSTGRES_DB=newperf
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+#volumes:
+#  kafka_volume:
+#    driver: local
+#  zookeeper_data:
+#    driver: local
 
-  postgres2:
-    container_name: postgres2
-    image: postgres:13-alpine
-    ports:
-      - 5402:5432
-    environment:
-      - POSTGRES_DB=newperf
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+#  postgres:
+#    container_name: postgres
+#    image: postgres:13-alpine
+#    ports:
+#      - 5401:5432
+#    environment:
+#      - POSTGRES_DB=newperf
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#
+#  postgres2:
+#    container_name: postgres2
+#    image: postgres:13-alpine
+#    ports:
+#      - 5402:5432
+#    environment:
+#      - POSTGRES_DB=newperf
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
 
   #  debezium:
   #    container_name: source-debezium
@@ -72,26 +85,26 @@ services:
   #      - kafka
   #      - postgres
 
-  kafka-connect:
-    container_name: kafka-connect
-    image: kafka-connect
-    ports:
-      - 8083:8083
-    links:
-      - kafka
-      - zookeeper
-      - postgres
-      - postgres2
-    environment:
-      - BOOTSTRAP_SERVERS=kafka:9092
-      - GROUP_ID=1
-      - CONFIG_STORAGE_TOPIC=my_connect_configs   # конфиги коннектора и его задания
-      - OFFSET_STORAGE_TOPIC=my_connect_offsets   # позиции, на которых находится коннектор
-      - STATUS_STORAGE_TOPIC=my_connect_statuses  # статус коннектора
-    depends_on:
-      - kafka
-      - postgres
-      - postgres2
+#  kafka-connect:
+#    container_name: kafka-connect
+#    image: kafka-connect
+#    ports:
+#      - 8083:8083
+#    links:
+#      - kafka
+#      - zookeeper
+#      - postgres
+#      - postgres2
+#    environment:
+#      - BOOTSTRAP_SERVERS=kafka:9092
+#      - GROUP_ID=1
+#      - CONFIG_STORAGE_TOPIC=my_connect_configs   # конфиги коннектора и его задания
+#      - OFFSET_STORAGE_TOPIC=my_connect_offsets   # позиции, на которых находится коннектор
+#      - STATUS_STORAGE_TOPIC=my_connect_statuses  # статус коннектора
+#    depends_on:
+#      - kafka
+#      - postgres
+#      - postgres2
 
 #  schema-registry:
 #    image: confluentinc/cp-schema-registry:6.1.0
